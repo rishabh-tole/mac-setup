@@ -50,3 +50,11 @@ ln -s "$REPO_DIR/zsh-files" ~/.config/zsh-files
 ln -s "$REPO_DIR/kitty" ~/.config/kitty
 
 ln -s ~/.config/zsh-files/_zshenv ~/.zshenv
+
+echo "Installing rishabhwm (window manager)..."
+# Config first, so rishabhwm doesn't write its own default on first launch
+ln -s "$REPO_DIR/rishabhwm-config" ~/.config/rishabhwm
+"$REPO_DIR/rishabhwm/scripts/install.sh"
+
+echo "Allow rishabhwm in System Settings → Privacy & Security → Accessibility. Hit Enter to continue"
+read -rs
