@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+kubectl config get-contexts \
+    --no-headers=true \
+    |grep '*' \
+    |awk '{ print $2 }'

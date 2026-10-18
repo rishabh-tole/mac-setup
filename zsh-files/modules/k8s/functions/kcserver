@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+kubectl get secrets pca-server-identity \
+    -n pca \
+    -o yaml \
+    -o jsonpath='{.data.serverId}' \
+    | base64 --decode

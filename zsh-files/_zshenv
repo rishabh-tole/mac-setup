@@ -1,0 +1,31 @@
+#
+# Default environment file that sets the home directory for zsh
+# dot files and kicks off the zsh initialization process.
+#
+# Authors:
+#   Vamshi Ponnapalli <vamshi.ponnapalli@gmail.com>
+#
+ZDOTDIR="$HOME/.config/zsh-files"
+
+local prompts_path
+
+# Paths to custom prompt definitions
+prompts_path=( $ZDOTDIR/prompt/functions )
+
+## Paths to custom completion scripts
+# completion_path=( $ZDOTDIR/completion )
+
+# Add directories for (local) scripts and functions so they can be autoloaded
+# later.
+# NOTE: this has to be loaded *before* compinit
+fpath=(
+    $prompts_path
+    # $completion_path
+    $fpath
+)
+
+# Configure custom module directory for zprezto
+zstyle ':prezto:load' pmodule-dirs $ZDOTDIR/modules
+
+# Source the default environment file.
+source "$ZDOTDIR/.zshenv"

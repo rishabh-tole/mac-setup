@@ -1,0 +1,9 @@
+new_tab Notes
+layout splits
+cd ~/notes
+
+launch --var window=main
+focus
+launch --location=vsplit --bias=45
+
+focus_matching_window var:window=main

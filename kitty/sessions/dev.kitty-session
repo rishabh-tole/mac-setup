@@ -1,0 +1,11 @@
+new_tab Code
+layout splits
+cd ~/projects
+
+launch --var window=main
+focus
+launch --location=vsplit --bias=45
+launch --location=hsplit --bias=40
+
+focus_matching_window var:window=main
+os_window_state fullscreen

@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Creates a temporary directory, and switches to it.
+local dir=$1
+if [ -z "$dir" ]
+then
+    dir="dir"
+fi
+echo "creating [$dir] and switching to it"
+mkdir -p "$dir"
+cd "$dir"

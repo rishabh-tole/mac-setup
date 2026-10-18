@@ -1,0 +1,96 @@
+#
+# Personalized prompt
+#
+# Authors:
+#
+#   Vamshi Ponnapalli <vamshi.ponnapalli@gmail.com>
+#
+
+# Load dependencies.
+pmodload 'helper'
+
+function prompt_rishabhtole_precmd {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+
+  # Get Git repository information.
+  if (( $+functions[git-info] )); then
+    git-info
+  fi
+}
+
+function prompt_rishabhtole_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_rishabhtole_precmd
+
+  # Set editor-info parameters.
+  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format ''
+  zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{red}♺%f'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{blue}✎%f '
+
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format '%F{blue}[%b]%f'
+  zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
+
+  zstyle ':prezto:module:git:info:added' format ' %F{green}✚%f'
+  zstyle ':prezto:module:git:info:modified' format ' %F{yellow}✻%f'
+  zstyle ':prezto:module:git:info:deleted' format ' %F{red}✘%f'
+  zstyle ':prezto:module:git:info:renamed' format ' %F{yellow}→%f'
+  zstyle ':prezto:module:git:info:untracked' format ' %F{red}⚑%f'
+
+  zstyle ':prezto:module:git:info:ahead' format ' %F{green}↑%f'
+  zstyle ':prezto:module:git:info:behind' format ' %F{green}↓%f'
+  zstyle ':prezto:module:git:info:stashed' format ' %F{cyan}✭%f'
+
+  # These are not being used.
+  zstyle ':prezto:module:git:info:dirty' format ' %F{gray}☁%f'
+  zstyle ':prezto:module:git:info:indexed' format '%F{green} -%f'
+  zstyle ':prezto:module:git:info:unindexed' format '%F{red} -%f'
+  zstyle ':prezto:module:git:info:commit' format '%F{green} ☰%f'
+  zstyle ':prezto:module:git:info:action' format ' %F{yellow}%s%f'
+  zstyle ':prezto:module:git:info:position' format ' %F{red}%p%f'
+  zstyle ':prezto:module:git:info:unmerged' format ' %F{yellow}═%f'
+ 
+  # Keys to use when displaying the prompt
+  zstyle ':prezto:module:git:info:keys' format \
+    'rprompt' '%b%C%a%m%d%r%u%A%B%S'
+# "a:$added_formatted" \
+# "A:$ahead_formatted" \
+# "B:$behind_formatted" \
+# "b:$branch_formatted" \
+# "C:$clean_formatted" \
+# "c:$commit_formatted" \
+# "d:$deleted_formatted" \
+# "D:$dirty_formatted" \
+# "i:$indexed_formatted" \
+# "I:$unindexed_formatted" \
+# "m:$modified_formatted" \
+# "p:$position_formatted" \
+# "R:$remote_formatted" \
+# "r:$renamed_formatted" \
+# "s:$action_formatted" \
+# "S:$stashed_formatted" \
+# "U:$unmerged_formatted" \
+# "u:$untracked_formatted"
+# More symbols to choose from:
+# ☀ ✹ ☄ ♆ ♀ ♁ ♐ ♇ ♈ ♉ ♚ ♛ ♜ ♝ ♞ ♟ ♠ ♣ ⚢ ⚲ ⚳ ⚴ ⚥ ⚤ ⚦ ⚒ ⚑ ⚐ ♺ ♻ ♼ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷
+# ✡ ✔ ✖ ✚ ✱ ✤ ✦ ❤ ➜ ➟ ➼ ✂ ✎ ✐ ⨀ ⨁ ⨂ ⨍ ⨎ ⨏ ⨷ ⩚ ⩛ ⩡ ⩱ ⩲ ⩵  ⩶ ⨠ 
+# ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬒ ⬓ ⬔ ⬕ ⬖ ⬗ ⬘ ⬙ ⬟  ⬤ 〒 ǀ ǁ ǂ ĭ Ť Ŧ
+# ✘ ⚙ ◼
+
+  # Define prompts.
+  PROMPT='%F{magenta}[%c]%(!,#,$)%f '
+  RPROMPT='%F{red}%(?.''.!) %f${editor_info[keymap]}${git_info:+${git_info[rprompt]}}'
+  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_rishabhtole_setup "$@"

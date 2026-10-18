@@ -1,0 +1,3 @@
+[submodule "zsh-files/.zprezto"]
+	path = zsh-files/.zprezto
+	url = https://github.com/sorin-ionescu/prezto

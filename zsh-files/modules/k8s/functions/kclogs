@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+if [ -z "${__K8S_NAMESPACE}" ]
+then
+    kubectl logs $@ -f | pino-pretty
+else
+    echo "Using namespace: ${__K8S_NAMESPACE}"
+    kubectl logs --namespace ${__K8S_NAMESPACE} $@ -f | pino-pretty
+fi

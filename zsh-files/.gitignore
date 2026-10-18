@@ -1,0 +1,10 @@
+.*.swp
+.*.swo
+
+.zcompdump
+.zcompcache
+.zhistory
+.zsh_history
+.zsh_sessions
+
+.DS_Store

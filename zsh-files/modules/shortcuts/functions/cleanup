@@ -1,0 +1,17 @@
+#!/bin/zsh
+local temp=$1
+if [ -z "$temp" ]
+then
+    temp="temp"
+fi
+
+local curDir=`pwd`
+local inCurDir=`echo $curDir|grep \/"$temp"$`
+if [ -n "$inCurDir" ]
+then
+    echo "cleaning up directory [$temp]"
+    cd ..
+    rm -rf $curDir
+else
+    echo "not in directory [$temp]; no other directory specified"
+fi

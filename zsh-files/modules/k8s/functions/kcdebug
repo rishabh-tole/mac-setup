@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+local instanceName=`date |md5 | head -c16`
+local imageName=$1
+kubectl run -i \
+    --tty \
+    --rm \
+    --restart=Never \
+    --image=$imageName \
+    --namespace=sandbox \
+    "zzz-debug-$instanceName" \
+    -- ${@:2}

@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+if [ -z $1 ]
+then
+    echo "Please specify the wifi network to connect to"
+    return 1
+fi
+
+local ssid=$1
+local password=$(grep "${ssid}=" ~/.config/wifi/networks|cut -f2 -d"=")
+
+if [ -z ${password} ]
+then
+    echo "Password not configured for network [${ssid}]"
+    echo "Please update ~/.config/wifi/networks and try again"
+    return 1
+fi
+
+networksetup -setairportnetwork en0 ${ssid} ${password}

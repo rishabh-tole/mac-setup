@@ -1,0 +1,39 @@
+#!/bin/zsh
+local mode=$1
+local fileName=$2
+
+if [ -z "$mode" ]
+then
+    echo "mode not specified"
+elif [ -z "$fileName" ]
+then
+    echo "filename not specified"
+else
+    local specFile=""
+    local sourceFile=""
+    if [[ "$mode" == "c" ]]
+    then
+        specFile="./test/client/"${fileName}"-spec.js"
+        sourceFile="./client/js/"${fileName}".js"
+    elif [[ "$mode" == "s" ]]
+    then
+        specFile="./test/server/"${fileName}"-spec.js"
+        sourceFile="./server/"${fileName}".js"
+    elif [[ "$mode" == "l" ]]
+    then
+        specFile="./test/unit/"${fileName}"-spec.js"
+        sourceFile="./lib/"${fileName}".js"
+    elif [[ "$mode" == "a" ]]
+    then
+        specFile="./test/unit/"${fileName}"-spec.js"
+        sourceFile="./app/"${fileName}".js"
+    else
+        echo "unrecognized mode: "$mode
+        exit
+    fi
+
+    if [[ ! -z "$specFile" && ! -z "$sourceFile" ]]
+    then
+        vim -p $specFile $sourceFile
+    fi
+fi
