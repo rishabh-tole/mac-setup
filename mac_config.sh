@@ -17,7 +17,7 @@ echo "Cloning mac-setup to $REPO_DIR..."
 mkdir -p ~/.config
 git clone --recursive "$REPO_URL" "$REPO_DIR"
 
-# Install dependencies from Brewfile (includes Raycast, AeroSpace, Vorssaint)
+# Install dependencies from Brewfile (includes Raycast, Vorssaint)
 echo "Installing dependencies from Brewfile..."
 brew bundle --file="$REPO_DIR/Brewfile"
 

@@ -1,11 +1,8 @@
-tap "nikitabobko/tap"
-
 # Basics
 cask "kitty"
 cask "docker-desktop"
 cask "google-chrome"
 cask "raycast"                    # Spotlight replacement
-cask "nikitabobko/tap/aerospace"  # Tiling window manager
 cask "vorssaint"                  # Menu bar toolkit: keep-awake, system monitor, volume mixer
 
 brew "zsh"
