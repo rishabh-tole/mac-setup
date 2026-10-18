@@ -58,3 +58,9 @@ ln -s "$REPO_DIR/rishabhwm-config" ~/.config/rishabhwm
 
 echo "Allow rishabhwm in System Settings → Privacy & Security → Accessibility. Hit Enter to continue"
 read -rs
+
+echo "Configuring Dock..."
+# Auto-hide the Dock and show it instantly on hover
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+killall Dock
