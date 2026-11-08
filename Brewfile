@@ -4,7 +4,7 @@ cask "docker-desktop"
 cask "google-chrome"
 cask "raycast"                    # Spotlight replacement
 cask "vorssaint"                  # Menu bar toolkit: keep-awake, system monitor, volume mixer
-cask "hammerspoon"                # Lua automation: trackpad swipe → Vivaldi tab switching
+cask "hammerspoon"                # Lua automation: right-click drag → Vivaldi tab switching
 
 brew "zsh"
 brew "tree"

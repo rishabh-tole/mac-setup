@@ -59,10 +59,8 @@ ln -s "$REPO_DIR/rishabhwm-config" ~/.config/rishabhwm
 echo "Allow rishabhwm in System Settings → Privacy & Security → Accessibility. Hit Enter to continue"
 read -rs
 
-echo "Configuring Hammerspoon (Vivaldi 2-finger swipe → switch tabs)..."
+echo "Configuring Hammerspoon (Vivaldi right-click drag → switch tabs)..."
 ln -s "$REPO_DIR/hammerspoon" ~/.hammerspoon
-# Kill Vivaldi's own swipe-back/forward so it doesn't fire alongside tab switching (other apps keep it)
-defaults write com.vivaldi.Vivaldi AppleEnableSwipeNavigateWithScrolls -bool false
 open -a Hammerspoon
 
 echo "Allow Hammerspoon in System Settings → Privacy & Security → Accessibility, and in Vivaldi set Settings → Tabs → Tab Cycling → Cycle in Tab Order. Hit Enter to continue"
